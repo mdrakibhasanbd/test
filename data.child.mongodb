@@ -1,0 +1,47 @@
+// MongoDB Playground
+// To disable this template go to Settings | MongoDB | Use Default Template For Playground.
+// Make sure you are connected to enable completions and to be able to run a playground.
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+// Select the database to use.
+use('mongodbVSCodePlaygroundDB');
+
+
+
+// db.categoryGraph.insertMany([
+// {"_id" : 1, "name" : "Mugs"},
+// {"_id" : 2, "name" : "Kitchen & Dining", "parentId" : 1},
+// {"_id" : 3, "name" : "Commuter & Travel", "parentId" : 2},
+// {"_id" : 4, "name" : "Glassware & Drinkware", "parentId" : 2},
+// {"_id" : 5, "name" : "Outdoor Recreation", "parentId" : 1},
+// {"_id" : 6, "name" : "Camping Mugs", "parentId" : 5},
+// {"_id" : 7, "name" : "Running Thermos", "parentId" : 5},
+// {"_id" : 8, "name" : "Red Run Thermos", "parentId" : 7},
+// {"_id" : 9, "name" : "White Run Thermos", "parentId" : 7},
+// {"_id" : 10, "name" : "Blue Run Thermos", "parentId" : 7}])
+
+// db.createView("vwCategoryDepth1", "categoryGraph",[{
+
+//  $graphLookup: {
+//     from:               "categoryGraph",
+//     startWith:          "$_id",
+//     connectFromField:   "_id",
+//     connectToField:     "parentId",
+//     maxDepth:             0,
+//     as:                 "children"
+// }}]);
+
+
+db.categoryGraph.aggregate([
+{$match: {  "_id": 2}},
+ {$graphLookup: {
+    from:               "vwCategoryDepth1",
+    startWith:          "$_id",
+    connectFromField:   "_id",
+    connectToField:     "parentId",
+    maxDepth:             0,
+    as:                 "children"}
+  }]);
+
+
+  

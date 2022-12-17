@@ -1,0 +1,11 @@
+db.categoryGraph.insertMany([
+{"_id" : 1, "name" : "OLT"},
+{"_id" : 2, "name" : "PON1", "parentId" : 1},
+{"_id" : 3, "name" : "PON2", "parentId" : 1},
+{"_id" : 4, "name" : "PON3", "parentId" : 1},
+{"_id" : 5, "name" : "PON4", "parentId" : 1},
+{"_id" : 6, "name" : "USER1", "parentId" : 2},
+{"_id" : 7, "name" : "USER2", "parentId" : 3},
+{"_id" : 8, "name" : "USER3", "parentId" : 4},
+{"_id" : 9, "name" : "USER4", "parentId" : 5}
+])
