@@ -1,0 +1,38 @@
+// MongoDB Playground
+// To disable this template go to Settings | MongoDB | Use Default Template For Playground.
+// Make sure you are connected to enable completions and to be able to run a playground.
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+// Select the database to use.
+use('device');
+
+// The drop() command destroys all data from a collection.
+// Make sure you run it against the correct database and collection.
+
+// Insert a few documents into the sales collection.
+// db.olt.insertMany([
+// {"_id" : 1, "name" : "OLT"},
+// {"_id" : 2, "name" : "PON1", "parentId" : 1},
+// {"_id" : 3, "name" : "PON2", "parentId" : 1},
+// {"_id" : 4, "name" : "PON3", "parentId" : 1},
+// {"_id" : 5, "name" : "PON4", "parentId" : 1},
+// {"_id" : 6, "name" : "USER1", "parentId" : 2},
+// {"_id" : 7, "name" : "USER2", "parentId" : 3},
+// {"_id" : 8, "name" : "USER3", "parentId" : 4},
+// {"_id" : 9, "name" : "USER4", "parentId" : 5}
+// ])
+
+
+
+db.olt.aggregate([
+
+{$match: {"_id": 1}},
+
+ {$graphLookup: {
+    from:               "vwOltDepth1",
+    startWith:          "$_id",
+    connectFromField:   "_id",
+    connectToField:     "parentId",
+    maxDepth:             0,
+    as:                 "children"}
+  }]);
