@@ -8,4 +8,4 @@ db.categoryGraph.insertMany([
 {"_id" : 7, "name" : "USER2", "parentId" : 3},
 {"_id" : 8, "name" : "USER3", "parentId" : 4},
 {"_id" : 9, "name" : "USER4", "parentId" : 5}
-])
+])'
