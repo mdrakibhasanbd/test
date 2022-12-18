@@ -25,7 +25,7 @@ use('device');
 
 
 db.olt.aggregate([
-
+{ $sort : { "_id" : 1 } },
 {$match: {"_id": 1}},
 
  {$graphLookup: {

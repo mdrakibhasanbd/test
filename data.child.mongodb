@@ -33,6 +33,8 @@ use('mongodbVSCodePlaygroundDB');
 
 
 db.categoryGraph.aggregate([
+  { $sort : { "_id" : 1 } },
+
 {$match: {  "_id": 2}},
  {$graphLookup: {
     from:               "vwCategoryDepth1",
